@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react-ref</title>
+</head>
+<style type="text/css"></style>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type='text/babel'>
+   //根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，
+   //反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现
+    var MyComponent = React.createClass({
+        handleClick: function() {
+            console.log(this.refs.myTextInput.value);
+        },
+        render: function() {
+            return (
+            <div>
+                <input type="text" ref="myTextInput" />
+                <input type="button" value="Focus the text input" onClick={this.handleClick} />
+            </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+    <MyComponent />,
+    document.getElementById('app')
+    );
+</script>

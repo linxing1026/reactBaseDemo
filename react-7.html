@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react-state</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type="text/babel">
+    // React把组件看成一个状态机，通过与用户的交互，实现不同状态，然后渲染UI,让用户界面和数据保持一致。
+    // getInitialState方法用于定义初始状态 这个对象可以通过 this.state属性读取 this.setState方法修改属性值
+
+	var LikeButton = React.createClass({
+        getInitialState:function(){
+            return {liked:false};
+        },
+       handleClick:function(){
+           this.setState({liked: !this.state.liked});
+       },
+       render:function(event){
+           var text = this.state.liked ? 'like':'not Like';
+           return (
+               <p onClick={this.handleClick}>
+                    <b>{text}</b> 点击切换 
+               </p>
+           );
+       }
+    });
+
+    ReactDOM.render(
+        <LikeButton/>,
+        document.getElementById('app')
+    )
+   
+    // 由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。
+    // 一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
+</script>

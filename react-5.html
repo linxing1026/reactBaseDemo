@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>react-PropTypes</title>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type="text/babel">
+	//propTypes属性就是用来验证组件实例是否复合要求
+
+	let MyTitle = React.createClass({
+		propTypes:{
+			name:React.PropTypes.string.isRequired
+		},
+		getDefaultProps : function() {
+			return {
+				name:'Hello world!'
+			}
+		},
+		render:function(){
+			return <h1>{this.props.name}</h1>
+		}
+	});
+	var title = '123';
+	ReactDOM.render(
+		<MyTitle name={title}/>,
+		// <MyTitle />,
+		document.getElementById('app')
+	)
+	//getDefaultProps 方法可以用来设置组件属性的默认值
+
+</script>

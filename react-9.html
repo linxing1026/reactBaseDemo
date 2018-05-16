@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react-生命周期</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type="text/babel">
+	var Button = React.createClass({
+        getInitialState:function() {
+               return {data:1};
+        },
+        setNewNumber:function(){
+            this.setState({data:this.state.data+1});
+        },
+        componentWillMount:function(){
+            console.log('1...component will mount');
+        },
+        componentDidMount:function(){
+            console.log('2...component did mount');
+        },
+        componentWillUpdate:function(){
+            console.log('3...component will update');
+        },
+        componentDidUpdate:function(){
+            console.log('4...component did update');
+        },
+        componentWilUnmount:function(){
+            console.log('5...component will unmount');
+        },
+        render:function(){
+            return(
+                <div>
+                    <button onClick={this.setNewNumber}>Add</button>
+                    <span>{this.state.data}</span>
+                </div>
+            )
+        }
+    });
+    
+    ReactDOM.render(
+        <Button/>,
+        document.getElementById('app')
+    )
+</script>

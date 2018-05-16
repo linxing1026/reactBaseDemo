@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react-component</title>
+</head>
+<style type="text/css"></style>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type='text/babel'>
+    // React 允许将代码封装成组件（component） React.creacteClass方法用于生成一个组件类
+    //注意：组件类的第一个字母必须大写，否则会报错
+
+    var Hello = React.createClass({
+        render:function(){
+            return <h1>hello reactjs</h1>;
+            // return <h1> hello {this.props.name}</h1>
+            // return (<div><h1>hello {this.props.name}</h1><h2>vue</h2></div>);
+        }
+    });
+    ReactDOM.render(
+        // <Hello/>,
+        <Hello name='world'/>,
+        document.getElementById('app')
+    )
+
+    //如果需要向组件传递参数，可以使用this.props对象
+    //复合组件
+//    var Website = React.createClass({
+//        render:function(){
+//            return(
+//                <div>
+//                     <Name name={this.props.name}/>
+//                     <Link site={this.props.site}/>
+//                </div>
+//            )
+//        }
+//    });
+//    var Name = React.createClass({
+//        render:function(){
+//            return (
+//                <h1>{this.props.name}</h1>
+//            )
+//        }
+//    });
+//    var Link = React.createClass({
+//        render:function(){
+//            return (
+//                <a href = {this.props.site}>
+//                {this.props.site}
+//                </a>
+//            )
+//        }
+//    });
+//    ReactDOM.render(
+//        <Website name='百度一下' site='http://www.baidu.com'/>,
+//        document.getElementById('app')
+//    )
+</script>

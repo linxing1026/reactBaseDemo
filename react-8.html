@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react-表单与事件</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type="text/babel">
+    // var HelloMsg = React.createClass({
+    //     getInitialState:function(){
+    //         return {
+    //             value:'Hello World'
+    //         };
+    //     },
+    //     handleChange:function(event){
+    //         this.setState({value:event.target.value});
+    //     },
+    //     render:function(){
+    //         var value = this.state.value;
+    //         return <div>
+    //                     <input type='text' value={value} onChange={this.handleChange}/>
+    //                     <h3>{value}</h3>
+    //                </div>
+    //     }
+    // });
+
+    // ReactDOM.render(
+    //     <HelloMsg/>,
+    //     document.getElementById('app')
+    // )
+   
+    //子组件上使用表单
+    //在父组件创建handleChange,作为prop{updateStateProp}传递到子组件
+
+    var Content = React.createClass({   
+        render:function(){
+            return <div>
+                        <input type='text' value={this.props.propData} onChange={this.props.updataStateProp} />
+                        <h3>{this.props.propData}</h3>
+                   </div>;
+        }
+    });
+    var HelloMsg = React.createClass({
+        getInitialState:function(){
+            return {
+                value:'hello react'
+            };
+        },
+        handleChange:function(event){
+            this.setState({value:event.target.value});
+        },
+        render:function(){
+            var value = this.state.value;
+            return <div>
+                        <Content propData = {value} updataStateProp = {this.handleChange}></Content>
+                   </div>;
+        }
+    });
+
+    ReactDOM.render(
+        <HelloMsg/>,
+        document.getElementById('app')
+    )
+</script>

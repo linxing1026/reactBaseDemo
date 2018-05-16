@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this.props.children</title>
+</head>
+<style type="text/css"></style>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type='text/babel'>
+    //this.props.children 表示组件的所有子节点
+    var NodeList = React.createClass({
+        render:function(){
+            return (
+                <ol>
+                    {
+                        React.Children.map(this.props.children,function(child){
+                            return <li>{child}</li>;
+                        })
+                    }    
+                </ol>
+            );
+        }
+    });
+    ReactDOM.render(
+        <NodeList>
+            <span>hello</span>
+            <span>world</span>
+        </NodeList>  ,
+        document.getElementById('app')  
+    )
+    //React提供一个工具方法 React.children来处理this.props.children。 可以使用React.Children.map来遍历子节点
+</script>
