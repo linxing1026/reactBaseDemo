@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax请求</title>
+</head>
+<style type="text/css"></style>
+<body>
+	<div id="app"></div>
+</body>
+</html>
+<script src="./js/react.js"></script>
+<script src="./js/react-dom.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<script type='text/babel'>
+	var UserGist = React.createClass({
+    getInitialState: function() {
+        return {
+        username: '',
+        lastGistUrl: ''
+        };
+    },
+    
+    componentDidMount: function() {
+        this.serverRequest = $.get(this.props.source, function (result) {
+        var lastGist = result[0];
+        this.setState({
+            username: lastGist.owner.login,
+            lastGistUrl: lastGist.html_url
+        });
+        }.bind(this));
+    },
+    
+    componentWillUnmount: function() {
+        this.serverRequest.abort();
+    },
+    
+    render: function() {
+        return (
+        <div>
+            {this.state.username} 用户最新的 Gist 共享地址：
+            <a href={this.state.lastGistUrl}>{this.state.lastGistUrl}</a>
+        </div>
+        );
+    }
+    });
+    
+    ReactDOM.render(
+    <UserGist source="https://api.github.com/users/octocat/gists" />,
+    document.getElementById('app')
+    );
+</script>
